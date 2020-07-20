@@ -9,7 +9,7 @@ from aiohttp_session import setup
 from aiohttp_session.cookie_storage import EncryptedCookieStorage
 
 from routes import routes
-import database
+import mongo_connect
 import settings
 
 logging.basicConfig(format='%(asctime)s [%(levelname)s] %(funcName)s :'
@@ -22,6 +22,7 @@ def start_server(host, port):
 
     app['secret_key'] = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     app['private_key'] = 'ab0880a6a9b593b6b4dfb23b842716f5777ff8656df940f137b00cc3ed76be2d'
+    app['websockets'] = []
     setup(app, EncryptedCookieStorage(bytes(app['secret_key'], 'utf-8')))
 
     app.add_routes(routes)
@@ -40,17 +41,17 @@ def start_server(host, port):
 
 
 def main():
-    init_db = database.InitDB()
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(init_db.create_db())
+    # init_db = database.InitDB()
+    # loop = asyncio.get_event_loop()
+    # loop.run_until_complete(init_db.create_db())
 
     try:
         start_server('localhost', 8080)
     except Exception as err:
         logging.error(err)
         sys.exit(1)
-    finally:
-        database.conn.close()
+    # finally:
+    #     database.conn.close()
 
 
 if __name__ == '__main__':

@@ -1,9 +1,9 @@
 $(document).ready(function(){
         try{
-            var sock = new WebSocket('ws://' + window.location.host + '/ws'); #1
+            var sock = new WebSocket('ws://' + window.location.host + '/ws');
         }
         catch(err){
-            var sock = new WebSocket('wss://' + window.location.host + '/ws');#1.1
+            var sock = new WebSocket('wss://' + window.location.host + '/ws');
         }
 
         // show message in div#subscribe
