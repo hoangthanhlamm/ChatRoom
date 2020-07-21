@@ -16,8 +16,7 @@ RUN pip3 install \
     jinja2 \
     aiohttp_jinja2 \
     aiohttp_session \
-    pymongo
+    pymongo \
+    pyodbc
 
 WORKDIR /project/chat-room
-
-ENV PATH $PATH:/project/chat-room/bin

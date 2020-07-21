@@ -68,6 +68,4 @@
         confirm_password.onkeyup = validatePassword;
     }
 
-
-
 })(jQuery);

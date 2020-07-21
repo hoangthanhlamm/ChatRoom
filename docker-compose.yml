@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  mongodb:
+    image: 'mongo'
+    container_name: 'mongodb'
+    environment:
+      - MONGO_INITDB_DATABASE=ChatRoom
+      - MONGO_INITDB_ROOT_USERNAME=lamht
+      - MONGO_INITDB_ROOT_PASSWORD=lam
+    volumes:
+    - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    - ./mongo-volume:/data/db
+    ports:
+    - '27017:27017'
+
+  chat-room:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: chat-room
+    container_name: chat-room
+    volumes:
+    - .:project/chat-room
+    depends_on:
+      - mongodb
+    ports:
+    - '8080:8080'
+    command: bash -c "python3 server.py"
