@@ -46,7 +46,7 @@ def main():
     # loop.run_until_complete(init_db.create_db())
 
     try:
-        start_server('localhost', 8080)
+        start_server('localhost', 8096)
     except Exception as err:
         logging.error(err)
         sys.exit(1)
