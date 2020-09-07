@@ -1,8 +1,10 @@
-import requests
+import time
 import random
 import logging
 import threading
 import webbrowser
+from selenium import webdriver
+
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] - %(message)s')
 
@@ -14,7 +16,8 @@ urls = [
     'https://datohost.com/vi?banner_title=Qu%E1%BA%A3ng%20c%C3%A1o%20t%E1%BB%B1%20%C4%91%E1%BB%99ng%20tr%C3%AAn%20Google%20v%C3%A0%20Facebook'
 ]
 # urls = [
-#     'http://localhost:8096/'
+#     'http://localhost:8096/',
+#     'http://localhost:8096/create_user'
 # ]
 
 
@@ -25,7 +28,14 @@ def send_request():
     # response = requests.get(urls[i])
     # if response.status_code != 200:
     #     logging.info(response.content.decode())
-    webbrowser.open(urls[i])
+    # webbrowser.open(urls[i])
+    driver = webdriver.Chrome()
+    j = random.randrange(3)
+    for k in range(j):
+        time.sleep(1)
+        driver.get(urls[i])
+    time.sleep(5)
+    driver.close()
 
 
 send_request()
