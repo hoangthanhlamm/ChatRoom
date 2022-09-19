@@ -1,16 +1,14 @@
-from aiohttp import web, WSMsgType
+import logging
+from datetime import datetime
+from time import time
+
 import aiohttp_jinja2
+import bcrypt
+from aiohttp import web, WSMsgType
 from aiohttp_session import get_session
 
-import json
-import jwt
-from time import time
-from datetime import datetime
-import bcrypt
-import logging
-
-from mongo_connect import Account, Message
 from errors import *
+from mongo_connect import Account, Message
 
 history = []
 offset = 0
